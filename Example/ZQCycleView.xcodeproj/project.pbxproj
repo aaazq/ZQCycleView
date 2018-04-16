@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21D0955ABEEAEF52BB0EEECA /* Pods_ZQCycleView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E24557E6133F8A5683EAB832 /* Pods_ZQCycleView_Tests.framework */; };
+		3D05DFBC208490F100CF61D1 /* zqCycyle.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3D05DFBB208490F100CF61D1 /* zqCycyle.gif */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		27DB7418A26709463F75EF1B /* Pods-ZQCycleView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQCycleView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQCycleView_Example/Pods-ZQCycleView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		3D05DFBB208490F100CF61D1 /* zqCycyle.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = zqCycyle.gif; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* ZQCycleView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZQCycleView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,6 +108,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3D05DFBA208490F100CF61D1 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				3D05DFBB208490F100CF61D1 /* zqCycyle.gif */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 				6003F5A5195388D20070C39A /* ZQViewController.h */,
 				6003F5A6195388D20070C39A /* ZQViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				3D05DFBA208490F100CF61D1 /* image */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -279,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D05DFBC208490F100CF61D1 /* zqCycyle.gif in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,

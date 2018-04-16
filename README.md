@@ -1,10 +1,5 @@
 # ZQCycleView
 
-[![CI Status](http://img.shields.io/travis/13525505765@163.com/ZQCycleView.svg?style=flat)](https://travis-ci.org/13525505765@163.com/ZQCycleView)
-[![Version](https://img.shields.io/cocoapods/v/ZQCycleView.svg?style=flat)](http://cocoapods.org/pods/ZQCycleView)
-[![License](https://img.shields.io/cocoapods/l/ZQCycleView.svg?style=flat)](http://cocoapods.org/pods/ZQCycleView)
-[![Platform](https://img.shields.io/cocoapods/p/ZQCycleView.svg?style=flat)](http://cocoapods.org/pods/ZQCycleView)
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -40,5 +35,5 @@ pageControlAliment:(PageControlAliment)pageControlAliment;
 2.注意事项：1.需要infoplist文件里设置Allow Arbitrary Loads = YES;
                      2.初始化没有数据时，例如imageUrls,可以在初始化的时候置为nil，随后进行属性赋值即可；
 
-![image](https://github.com/aaazq/ZQCycleView/blob/master/GuiderView/image/zqCycyle.gif)
+![image](https://github.com/aaazq/ZQCycleView/blob/master/Example for ZQCycleView/image/zqCycyle.gif)
 
