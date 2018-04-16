@@ -26,4 +26,19 @@ pod 'ZQCycleView'
 
 ## License
 
-ZQCycleView is available under the MIT license. See the LICENSE file for more info.
+轮播图，长方形分页控件
+最新更新功能：支持无限滚动、点击回调等
+使用方法：
+1.进行初始化，并实现代理方法：
+- (instancetype)initWithframe:(CGRect)frame
+imageUrls:(NSArray *)imageUrls
+delegate:(id<ZQCycleViewDelegate>)delegate
+selectPageControlColor:(UIColor*)selectPageControlColor
+pageControlAliment:(PageControlAliment)pageControlAliment;
+/** 点击图片回调 */
+- (void)cycleScrollView:(ZQCycleView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index;
+2.注意事项：1.需要infoplist文件里设置Allow Arbitrary Loads = YES;
+                     2.初始化没有数据时，例如imageUrls,可以在初始化的时候置为nil，随后进行属性赋值即可；
+
+![image](https://github.com/aaazq/ZQCycleView/blob/master/GuiderView/image/zqCycyle.gif)
+

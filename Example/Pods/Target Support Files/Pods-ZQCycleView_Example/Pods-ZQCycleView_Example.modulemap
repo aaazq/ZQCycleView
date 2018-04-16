@@ -1,0 +1,6 @@
+framework module Pods_ZQCycleView_Example {
+  umbrella header "Pods-ZQCycleView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

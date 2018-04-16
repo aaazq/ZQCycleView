@@ -1,0 +1,6 @@
+framework module ZQCycleView {
+  umbrella header "ZQCycleView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -58,13 +58,13 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		79BE58CCC3F1B86ADB894857 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		79BE58CCC3F1B86ADB894857 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95CB89341D8736F9BCACFB02 /* Pods_ZQCycleView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQCycleView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9648B660286DF8732BED4E6F /* Pods-ZQCycleView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQCycleView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZQCycleView_Example/Pods-ZQCycleView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		C725B16C1573FB13A3BBBD01 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C725B16C1573FB13A3BBBD01 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		DA749A31DBFD39A1529C9E14 /* Pods-ZQCycleView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQCycleView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQCycleView_Tests/Pods-ZQCycleView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		DB9D536E8BE4E9992EE10CFD /* ZQCycleView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = ZQCycleView.podspec; path = ../ZQCycleView.podspec; sourceTree = "<group>"; };
+		DB9D536E8BE4E9992EE10CFD /* ZQCycleView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZQCycleView.podspec; path = ../ZQCycleView.podspec; sourceTree = "<group>"; };
 		E24557E6133F8A5683EAB832 /* Pods_ZQCycleView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQCycleView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7EF373E1BB248C98455F7A2 /* Pods-ZQCycleView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQCycleView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZQCycleView_Tests/Pods-ZQCycleView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -322,10 +322,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ZQCycleView_Example/Pods-ZQCycleView_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/ZQCycleView/ZQCycleView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZQCycleView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
