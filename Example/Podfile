@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ZQCycleView_Example' do
+  pod 'ZQCycleView', :path => '../'
+
+  target 'ZQCycleView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
