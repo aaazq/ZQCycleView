@@ -35,5 +35,5 @@ pageControlAliment:(PageControlAliment)pageControlAliment;
 2.注意事项：1.需要infoplist文件里设置Allow Arbitrary Loads = YES;
                      2.初始化没有数据时，例如imageUrls,可以在初始化的时候置为nil，随后进行属性赋值即可；
 
-![image](https://github.com/aaazq/ZQCycleView/blob/master/Example/image/zqCycyle.gif)
+![image](https://github.com/aaazq/ZQCycleView/blob/master/Example/ZQCycleView/image/zqCycyle.gif)
 
