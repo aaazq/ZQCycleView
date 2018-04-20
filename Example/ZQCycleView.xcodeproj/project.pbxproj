@@ -219,7 +219,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				7D5339353654985811EF9F0F /* [CP] Embed Pods Frameworks */,
-				7FED6F9DF29394C9943842AD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,8 +237,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				DDCF8ADD5D31E5F843E48C98 /* [CP] Embed Pods Frameworks */,
-				9F38F66FA408474788DA85DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -345,51 +342,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZQCycleView_Example/Pods-ZQCycleView_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7FED6F9DF29394C9943842AD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZQCycleView_Example/Pods-ZQCycleView_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9F38F66FA408474788DA85DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZQCycleView_Tests/Pods-ZQCycleView_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DDCF8ADD5D31E5F843E48C98 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZQCycleView_Tests/Pods-ZQCycleView_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EEDB3925E5FBA4BE94EF874D /* [CP] Check Pods Manifest.lock */ = {

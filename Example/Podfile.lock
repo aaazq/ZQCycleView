@@ -8,14 +8,18 @@ PODS:
 DEPENDENCIES:
   - ZQCycleView (from `../`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SDWebImage
+
 EXTERNAL SOURCES:
   ZQCycleView:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
-  ZQCycleView: 67849c5313ee49085137bd810f7cdc1ef9eae2cb
+  ZQCycleView: 339132a677e826b754497e92086569fa89476f1b
 
 PODFILE CHECKSUM: 616c04d212abc0dc35e6b7a03c064cf3216266e4
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0
