@@ -50,7 +50,11 @@ static NSInteger const pageControlMarginDown = 25;
         self.delegate = delegate;
         if (imageUrls.count) {
             [self setupSubViewsWithImageUrls:imageUrls];
-            [self addTimer];
+            if (imageUrls.count > 1) {
+                [self addTimer];
+            } else {
+                self.bgScrollView.scrollEnabled = NO;
+            }
         }
     }
     return self;
@@ -60,7 +64,11 @@ static NSInteger const pageControlMarginDown = 25;
     _imageUrls = imageUrls;
     if (imageUrls.count) {
         [self setupSubViewsWithImageUrls:imageUrls];
-        [self addTimer];
+        if (imageUrls.count > 1) {
+            [self addTimer];
+        } else {
+            self.bgScrollView.scrollEnabled = NO;
+        }
     }
 }
 
@@ -136,10 +144,10 @@ static NSInteger const pageControlMarginDown = 25;
         //最后一页，注意：1.将bgScrollView滑到额外的最后一页
         [self.bgScrollView setContentOffset:CGPointMake(_bannerW*(self.btnArray.count+1), 0) animated:YES];
         //2.按钮动画至第一页
-        [self animationWithIsRightDirection:YES isTimerAutomate:NO];
+        [self animationWithIsRightDirection:YES isTimerAutomate:NO isNeedReset:YES];
     } else {
         //后一页
-        [self animationWithIsRightDirection:YES isTimerAutomate:YES];
+        [self animationWithIsRightDirection:YES isTimerAutomate:YES isNeedReset:NO];
     }
 }
 
@@ -147,7 +155,7 @@ static NSInteger const pageControlMarginDown = 25;
  @param isRight 是否是向右滚动
  @param isTimerAutomate 是否是定时器导致的
  */
-- (void)animationWithIsRightDirection:(BOOL)isRight isTimerAutomate:(BOOL)isTimerAutomate {
+- (void)animationWithIsRightDirection:(BOOL)isRight isTimerAutomate:(BOOL)isTimerAutomate isNeedReset:(BOOL)isNeedReset {
     [UIView animateWithDuration:1 animations:^{
         for (UIButton *tempBtn in self.btnArray) {
             if ([tempBtn isEqual:[self moveNextBtnWithDirection:isRight]]) {
@@ -205,7 +213,7 @@ static NSInteger const pageControlMarginDown = 25;
         }
     } completion:^(BOOL finished) {
         //3.如果通过倒计时移到最后一张，需要重置为第一张
-        if (self.currentBtn.tag == 1000 && !isTimerAutomate) {
+        if (self.currentBtn.tag == 1000 && isNeedReset) {
             [self.bgScrollView setContentOffset:CGPointMake(self->_bannerW, 0) animated:NO];
         }
     }];
@@ -227,7 +235,7 @@ static NSInteger const pageControlMarginDown = 25;
     _willEndContentOffsetX = scrollView.contentOffset.x;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     _endContentOffsetX = scrollView.contentOffset.x;
     NSInteger currentOffsetX = scrollView.contentOffset.x;
@@ -237,13 +245,13 @@ static NSInteger const pageControlMarginDown = 25;
         if (currentIndex == 0) {
             [self.bgScrollView setContentOffset:CGPointMake(_bannerW*(self.btnArray.count), 0) animated:NO];
         }
-        [self animationWithIsRightDirection:NO isTimerAutomate:NO];
+        [self animationWithIsRightDirection:NO isTimerAutomate:NO isNeedReset:NO];
     } else if (_endContentOffsetX > _willEndContentOffsetX && _willEndContentOffsetX > _startContentOffsetX) {
         //画面从左往右移动，后一页
         if (currentIndex == self.btnArray.count+1) {
             [self.bgScrollView setContentOffset:CGPointMake(_bannerW, 0) animated:NO];
         }
-        [self animationWithIsRightDirection:YES isTimerAutomate:NO];
+        [self animationWithIsRightDirection:YES isTimerAutomate:NO isNeedReset:NO];
     }
     
 }

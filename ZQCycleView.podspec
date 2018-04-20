@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ZQCycleView'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = '椭圆形的轮播图'
 
   s.description      = '封装了轮播图和view的分类,将传入的图片url动态展示，可一行代码初始化并使用，设置代理可以回调点击事件'
