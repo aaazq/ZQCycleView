@@ -11,12 +11,12 @@
 #import "UIImageView+WebCache.h"
 @interface ZQCycleView() <UIScrollViewDelegate>
 {
-    CGFloat startContentOffsetX;
-    CGFloat willEndContentOffsetX;
-    CGFloat endContentOffsetX;
+    CGFloat _startContentOffsetX;
+    CGFloat _willEndContentOffsetX;
+    CGFloat _endContentOffsetX;
     //frame
-    CGFloat bannerW;
-    CGFloat bannerH;
+    CGFloat _bannerW;
+    CGFloat _bannerH;
 }
 @property (nonatomic, strong) NSMutableArray *btnArray;
 @property (nonatomic, strong) UIButton *currentBtn;
@@ -43,8 +43,8 @@ static NSInteger const pageControlMarginDown = 25;
               selectPageControlColor:(UIColor*)selectPageControlColor
            pageControlAliment:(PageControlAliment)pageControlAliment {
     if (self == [super initWithFrame:frame]) {
-        bannerW = frame.size.width;
-        bannerH = frame.size.height;
+        _bannerW = frame.size.width;
+        _bannerH = frame.size.height;
         self.selectPageControlColor = selectPageControlColor;
         self.pageControlAliment = pageControlAliment;
         self.delegate = delegate;
@@ -68,12 +68,12 @@ static NSInteger const pageControlMarginDown = 25;
     //重置self
     [self removeAllSubviews];
     //ScrollView
-    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, bannerW, bannerH)];
+    self.bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, _bannerW, _bannerH)];
     _bgScrollView.pagingEnabled = YES;
     _bgScrollView.showsHorizontalScrollIndicator = NO;
     _bgScrollView.bounces = YES;
     _bgScrollView.delegate = self;
-    _bgScrollView.contentSize = CGSizeMake(bannerW*(imageUrls.count+2), bannerH);
+    _bgScrollView.contentSize = CGSizeMake(_bannerW*(imageUrls.count+2), _bannerH);
     [self addSubview:self.bgScrollView];
     
     //imageView
@@ -81,7 +81,7 @@ static NSInteger const pageControlMarginDown = 25;
     [mArray insertObject:imageUrls.lastObject atIndex:0];
     [mArray addObject:imageUrls.firstObject];
     for (int i = 0; i < mArray.count; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(bannerW*i, 0, bannerW, bannerH)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(_bannerW*i, 0, _bannerW, _bannerH)];
         imageView.tag = 2000+i;
         [imageView sd_setImageWithURL:[NSURL URLWithString:mArray[i]] placeholderImage:[self imageWithName:@"banner"]];
         imageView.userInteractionEnabled = YES;
@@ -90,12 +90,12 @@ static NSInteger const pageControlMarginDown = 25;
         [self.bgScrollView addSubview:imageView];
     }
     //左边添加了一张额外的图片，因此要把contentoffsetX左移一个位置
-    [self.bgScrollView setContentOffset:CGPointMake(bannerW, 0) animated:NO];
+    [self.bgScrollView setContentOffset:CGPointMake(_bannerW, 0) animated:NO];
     
     //按钮
-    CGFloat pageControlMarginRight = _pageControlAliment ? 25 : bannerW/2-normalbtnWH*(imageUrls.count);
-    CGFloat X = bannerW-normalbtnWH*(imageUrls.count-1)-normalbtnWH*(imageUrls.count-1)-selectBtnWidth- pageControlMarginRight;
-    CGFloat Y = bannerH-pageControlMarginDown;
+    CGFloat pageControlMarginRight = _pageControlAliment ? 25 : _bannerW/2-normalbtnWH*(imageUrls.count);
+    CGFloat X = _bannerW-normalbtnWH*(imageUrls.count-1)-normalbtnWH*(imageUrls.count-1)-selectBtnWidth- pageControlMarginRight;
+    CGFloat Y = _bannerH-pageControlMarginDown;
     self.btnArray = [NSMutableArray arrayWithCapacity:imageUrls.count];
     self.btnXArray = [NSMutableArray arrayWithCapacity:imageUrls.count];
     for (int i = 0; i < imageUrls.count; i++) {
@@ -132,7 +132,15 @@ static NSInteger const pageControlMarginDown = 25;
 
 - (void)scrollAnimation:(NSTimer *)timer {
     //画面从左往右移动，后一页
-    [self animationWithIsRightDirection:YES isTimerAutomate:YES];
+    if (self.currentBtn.tag-1000 == self.btnArray.count-1) {
+        //最后一页，注意：1.将bgScrollView滑到额外的最后一页
+        [self.bgScrollView setContentOffset:CGPointMake(_bannerW*(self.btnArray.count+1), 0) animated:YES];
+        //2.按钮动画至第一页
+        [self animationWithIsRightDirection:YES isTimerAutomate:NO];
+    } else {
+        //后一页
+        [self animationWithIsRightDirection:YES isTimerAutomate:YES];
+    }
 }
 
 /**
@@ -143,10 +151,10 @@ static NSInteger const pageControlMarginDown = 25;
     [UIView animateWithDuration:1 animations:^{
         for (UIButton *tempBtn in self.btnArray) {
             if ([tempBtn isEqual:[self moveNextBtnWithDirection:isRight]]) {
-                tempBtn.backgroundColor = _selectPageControlColor;
+                tempBtn.backgroundColor = self.selectPageControlColor;
                 tempBtn.alpha = 1.0;
             } else {
-                tempBtn.backgroundColor = _normalPageControlColor == nil ? [UIColor whiteColor] : _normalPageControlColor;
+                tempBtn.backgroundColor = self.normalPageControlColor == nil ? [UIColor whiteColor] : self.normalPageControlColor;
                 tempBtn.alpha = 0.5;
             }
         }
@@ -163,8 +171,9 @@ static NSInteger const pageControlMarginDown = 25;
             nextBtn.left -= (selectBtnWidth-normalbtnWH);
             self.currentBtn = [self moveNextBtnWithDirection:isRight];
             
-            [self.bgScrollView setContentOffset:CGPointMake(bannerW*(self.currentBtn.tag-1000+1), 0) animated:YES];
-
+            
+            [self.bgScrollView setContentOffset:CGPointMake(self->_bannerW*(self.currentBtn.tag-1000+1), 0) animated:YES];
+            
         } else {
             self.currentBtn.width = normalbtnWH;
             UIButton *nextBtn = [self moveNextBtnWithDirection:isRight];
@@ -192,6 +201,12 @@ static NSInteger const pageControlMarginDown = 25;
                 }
             }
             self.currentBtn = [self moveNextBtnWithDirection:isRight];
+
+        }
+    } completion:^(BOOL finished) {
+        //3.如果通过倒计时移到最后一张，需要重置为第一张
+        if (self.currentBtn.tag == 1000 && !isTimerAutomate) {
+            [self.bgScrollView setContentOffset:CGPointMake(self->_bannerW, 0) animated:NO];
         }
     }];
 }
@@ -200,7 +215,7 @@ static NSInteger const pageControlMarginDown = 25;
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     //拖动前的起始坐标
-    startContentOffsetX = scrollView.contentOffset.x;
+    _startContentOffsetX = scrollView.contentOffset.x;
     [self removeTimer];
 }
 
@@ -209,24 +224,24 @@ static NSInteger const pageControlMarginDown = 25;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{    //将要停止前的坐标
-    willEndContentOffsetX = scrollView.contentOffset.x;
+    _willEndContentOffsetX = scrollView.contentOffset.x;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
-    endContentOffsetX = scrollView.contentOffset.x;
+    _endContentOffsetX = scrollView.contentOffset.x;
     NSInteger currentOffsetX = scrollView.contentOffset.x;
-    NSInteger currentIndex = floor(currentOffsetX/bannerW);
+    NSInteger currentIndex = floor(currentOffsetX/_bannerW);
 //    NSLog(@"index: %ld", currentIndex);
-    if (endContentOffsetX < willEndContentOffsetX && willEndContentOffsetX < startContentOffsetX) { //画面从右往左移动，前一页
+    if (_endContentOffsetX < _willEndContentOffsetX && _willEndContentOffsetX < _startContentOffsetX) { //画面从右往左移动，前一页
         if (currentIndex == 0) {
-            [self.bgScrollView setContentOffset:CGPointMake(bannerW*(self.btnArray.count), 0) animated:NO];
+            [self.bgScrollView setContentOffset:CGPointMake(_bannerW*(self.btnArray.count), 0) animated:NO];
         }
         [self animationWithIsRightDirection:NO isTimerAutomate:NO];
-    } else if (endContentOffsetX > willEndContentOffsetX && willEndContentOffsetX > startContentOffsetX) {
+    } else if (_endContentOffsetX > _willEndContentOffsetX && _willEndContentOffsetX > _startContentOffsetX) {
         //画面从左往右移动，后一页
         if (currentIndex == self.btnArray.count+1) {
-            [self.bgScrollView setContentOffset:CGPointMake(bannerW, 0) animated:NO];
+            [self.bgScrollView setContentOffset:CGPointMake(_bannerW, 0) animated:NO];
         }
         [self animationWithIsRightDirection:YES isTimerAutomate:NO];
     }
